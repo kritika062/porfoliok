@@ -8,15 +8,13 @@ const Footer = () => {
       {/* background grid */}
 
       <div className="flex flex-col items-center">
-        <h1 className="heading lg:max-w-[45vw]">
-          Ready to take <span className="text-purple">your</span> digital
-          presence to the next level?
+        <h1 className="section-heading">
+          Interested in  <span className="text-purple">collaborating?</span> 
         </h1>
         <p className="text-white-200 md:mt-10 my-5 text-center">
-          Reach out to me today and let&apos;s discuss how I can help you
-          achieve your goals.
+          Let&apos;s connect and create something impactful together.
         </p>
-        <a href="mailto:pranavirao14@gmail.com">
+        <a href="https://www.linkedin.com/in/kritika-r-g-a30120325/" target="_blank" rel="noopener noreferrer">
           <MagicButton
             title="Let's get in touch"
             icon={<FaLocationArrow />}
@@ -26,7 +24,7 @@ const Footer = () => {
       </div>
       <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
         <p className="md:text-base text-sm md:font-normal font-light">
-          Copyright © 2025 Pranavi T
+          Copyright © 2025 Kritika R G
         </p>
 
         <div className="flex items-center md:gap-3 gap-6">

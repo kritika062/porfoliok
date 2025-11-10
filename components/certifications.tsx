@@ -8,7 +8,7 @@ import { FaLocationArrow } from "react-icons/fa6";
 const Certifications = () => {
   return (
     <div className="py-20 w-full" id="certifications">
-      <h1 className="heading">
+      <h1 className="section-heading">
         My <span className="text-purple">certifications</span>
       </h1>
 

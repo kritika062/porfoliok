@@ -1,83 +1,83 @@
 "use client";
 
 import { FaLocationArrow } from "react-icons/fa6";
+import { FaLightbulb } from "react-icons/fa";
+import { useState } from "react";
 
 import { projects } from "@/data";
 import { PinContainer } from "./ui/Pin";
 
 const RecentProjects = () => {
+  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
+
+  const toggleFlip = (id: number) => {
+    const newFlipped = new Set(flippedCards);
+    if (newFlipped.has(id)) {
+      newFlipped.delete(id);
+    } else {
+      newFlipped.add(id);
+    }
+    setFlippedCards(newFlipped);
+  };
+
+  const handleMouseEnter = (id: number) => {
+    const newFlipped = new Set(flippedCards);
+    newFlipped.add(id);
+    setFlippedCards(newFlipped);
+  };
+
+  const handleMouseLeave = (id: number) => {
+    const newFlipped = new Set(flippedCards);
+    newFlipped.delete(id);
+    setFlippedCards(newFlipped);
+  };
+
   return (
     <div className="py-20">
-      <h1 className="heading">
+      <h1 className="section-heading">
         A small selection of{" "}
         <span className="text-purple">recent projects</span>
       </h1>
-      <div className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10">
+      <div className="flex flex-row items-center justify-center p-4 gap-8 mt-10">
         {projects.map((item) => (
           <div
-            className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]"
+            className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw] relative rounded-3xl overflow-hidden"
             key={item.id}
+            style={{ backgroundColor: "#13162D" }}
+            onMouseEnter={() => handleMouseEnter(item.id)}
+            onMouseLeave={() => handleMouseLeave(item.id)}
           >
-            <PinContainer
-              title="Projects"
-              href="https://twitter.com/mannupaaji"
-            >
-              <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">
-                <div
-                  className="relative w-full h-full overflow-hidden lg:rounded-3xl"
-                  style={{ backgroundColor: "#13162D" }}
-                >
-                  <img src="/bg.png" alt="bgimg" />
+            <div className={`w-full h-full transition-transform duration-500 ${flippedCards.has(item.id) ? 'rotate-y-180' : ''}`} style={{ transformStyle: 'preserve-3d' }}>
+              {!flippedCards.has(item.id) && (
+                <div className="absolute bottom-6 right-2 z-20 cursor-pointer" onClick={() => toggleFlip(item.id)}>
+                  <FaLightbulb className="text-[#d8c542] w-8 h-8 hover:text-[#f0d95a] transition-colors" />
                 </div>
-                <img
-                  src={item.img}
-                  alt="cover"
-                  className="z-10 absolute bottom-0"
-                />
-              </div>
-
-              <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
-                {item.title}
-              </h1>
-
-              <p
-                className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2"
-                style={{
-                  color: "#BEC1DD",
-                  margin: "1vh 0",
-                }}
-              >
-                {item.des}
-              </p>
-
-              <div className="flex items-center justify-between mt-7 mb-3">
-                <div className="flex items-center">
-                  {item.iconLists.map((icon, index) => (
-                    <div
-                      key={index}
-                      className="border border-white/[.2] rounded-full bg-black lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center"
-                      style={{
-                        transform: `translateX(-${5 * index + 2}px)`,
-                      }}
-                    >
-                      <img src={icon} alt="icon5" className="p-2" />
-                    </div>
-                  ))}
+              )}
+              <div className="absolute inset-0 backface-hidden p-6 flex flex-col">
+                <div className="relative flex items-center justify-center w-full overflow-hidden h-[20vh] lg:h-[30vh] mb-6">
+                  <img src="/bg.png" alt="bgimg" className="absolute inset-0 w-full h-full object-cover" />
+                  <img
+                    src={item.img}
+                    alt="cover"
+                    className="z-10 absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
 
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex justify-center items-center"
+                <h1 className="font-bold lg:text-2xl md:text-xl text-base text-white break-words">
+                  {item.title}
+                </h1>
+
+                <p
+                  className="lg:text-xl lg:font-normal font-light text-sm text-gray-300 mt-2 break-words"
                 >
-                  <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-                    Github Link
-                  </p>
-                  <FaLocationArrow className="ms-3" color="#CBACF9" />
-                </a>
+                  {item.des}
+                </p>
               </div>
-            </PinContainer>
+              <div className="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-purple-900 to-black rounded-3xl p-6 flex flex-col justify-center items-center text-center">
+                <h2 className="text-white font-bold text-xl mb-4">Why I Built This</h2>
+                <p className="text-gray-300 text-sm leading-relaxed">{item.whyBuilt}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>

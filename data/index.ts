@@ -74,34 +74,31 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "Secure 3-Tier Web Application – AWS Cloud",
-    des: "Deployed a 3-tier architecture on AWS using EC2, RDS, and S3 + CloudFront. Implemented IAM roles and HTTPS certificates for security and scalability.",
-    img: "/km.png",
+    title: "CSR Impact Tracker- Event Analytics ",
+    des: "Built a full-stack CSR analytics platform with secure login and real-time dashboard visualization of corporate event data.",
+    img: "/csr.png",
     iconLists: ["/aws.svg", "/s3.svg", "/ec2.svg", "/github1.png"],
+    link: "https://github.com/Kritikarg20/secure-3-tier-aws",
+    whyBuilt: "This project was built to explore how event data can be visualized and interpreted more effectively. Having organized large-scale events like TEDxHyderabad and CSR Impact, I noticed how much valuable data—such as participation, donations, and volunteer details—often remains unused after events. I created this project as a way to learn how to process and represent raw data visually, transforming it into meaningful insights using charts and analytics dashboards."
   },
   {
     id: 2,
-    title: "SaarthiAI – AI Resume & Portfolio Builder",
-    des: "Built with React and Node.js, it helps users craft AI-optimized resumes",
-    img: "/sarthi.jpg",
+    title: "Fake News Origin Tracer",
+    des: "An interactive web tool to combat misinformation by scraping article metadata using domain heuristics and similarity algorithms.",
+    img: "/fnot.png",
     iconLists: ["/re.svg", "/exp1.svg", "/nodejs.svg"],
-    link: "https://github.com/pranavi2/saarthiAI",
+    link: "https://github.com/Kritikarg20/saarthiAI",
+    whyBuilt: "Fake News Origin Tracer was developed out of curiosity about how misinformation spreads online. I wanted to learn how to track and analyze online content using Python and APIs, so I built a prototype that identifies and visualizes the possible origin of fake news stories. The project helped me understand data extraction, API integration, and information visualization in a real-world context."
   },
   {
     id: 3,
-    title: "Password Manager – AES Encryption",
-    des: "Developed a Python-based console app for secure password storage using AES encryption and PBKDF2-HMAC key derivation.",
-    img: "/p3.png",
+    title: "R&D InsightHub – AI Document Analysis Platform",
+    des: "Engineered a full-stack web platform that analyzes research papers using AI-powered document processing.",
+    img: "/RD.png",
     iconLists: ["/python.svg", "/github1.png"],
-    link: "https://github.com/pranavi2/AES-Password-Manager",
-  },
-  {
-    id: 4,
-    title: "QuickReserve - Full-Stack Booking App",
-    des: "Built QuickReserve, a booking platform with secure payments and a modern tech stack.",
-    img: "/p4.jpeg",
-    iconLists: ["/react.svg", "/nodejs.svg", "/exjs.png", "/mongodb.svg"],
-  },
+    link: "https://github.com/Kritikarg20/AES-Password-Manager",
+  whyBuilt: "R&D InsightHub was inspired by my internship experience at DRDO, I wanted to understand how AI could make document review and knowledge extraction easier, so I built this project as a learning experiment to implement an AI-based document analysis system. It allowed me to explore how natural language processing can summarize research and extract key insights."
+},
 ];
 
 export const testimonials = [
@@ -188,52 +185,23 @@ export const companies = [
 export const workExperience = [
   {
     id: 1,
-    title: "Frontend Engineer Intern",
-    desc: "Assisted in the development of a web-based platform using HTML, CSS, Javascript, enhancing interactivity.",
+    title: "Python Developer Intern, DRDO-DRDL (Defense Research and Development Laboratory)",
+    desc: "\n\nDeveloped Python-based data processing, automation and encryption modules for the Flight Control Systems Wing of BrahMos Aerospace, contributing to mission-critical software development.\n\n\n\nCollaborated with scientists and engineers to analyze system requirements and automate processes supporting missile development workflows.\n\n\n\n\nAcquired extensive experience in Python programming within a specialized professional setting.",
     className: "md:col-span-2",
     thumbnail: "/exp1.svg",
   },
-  {
-    id: 2,
-    title: "Project Management Fellow",
-    desc: "Managed live startup projects, focusing on product and project management in agile environments.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp2.svg",
-  },
-  {
-    id: 3,
-    title: "GDG On-Campus Lead",
-    desc: "Organizing cloud and web workshops, mentoring peers on Google Cloud, Firebase, and collaborative development.",
-    className: "md:col-span-2",
-    thumbnail: "/exp3.svg",
-  },
-
-  // {
-  //   id: 3,
-  //   title: "Freelance App Dev Project",
-  //   desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
-  //   className: "md:col-span-2", // change to md:col-span-2
-  //   thumbnail: "/exp3.svg",
-  // },
-  // {
-  //   id: 4,
-  //   title: "Lead Frontend Developer",
-  //   desc: "Developed and maintained user-facing features using modern frontend technologies.",
-  //   className: "md:col-span-2",
-  //   thumbnail: "/exp4.svg",
-  // },
 ];
 
 export const socialMedia = [
   {
     id: 1,
     img: "/git.svg",
-    link: "https://github.com/pranavi2",
+    link: "https://github.com/Kritikarg20",
   },
 
   {
     id: 2,
     img: "/link.svg",
-    link: "https://www.linkedin.com/in/pranavi-t-69aa84254/",
+    link: "https://www.linkedin.com/in/kritika-r-g-a30120325/",
   },
 ];
