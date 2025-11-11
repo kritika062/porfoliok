@@ -1,5 +1,6 @@
 'use client';
 
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
@@ -184,8 +185,10 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .arcDashAnimateTime(defaultProps.arcTime);
 
     globeRef.current
-      .pointsData(data)
-      .pointColor((e) => (e as { color: string }).color)
+      .pointsData(globeData)
+      .pointColor((e: any) =>
+        typeof e.color === "function" ? e.color(0) : e.color
+      )
       .pointsMerge(true)
       .pointAltitude(0.0)
       .pointRadius(2);
