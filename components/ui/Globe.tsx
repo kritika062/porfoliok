@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
-import { useThree, Canvas, extend, type ThreeElement } from "@react-three/fiber";
+import { useThree, Canvas, extend, type Object3DNode } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
 
@@ -14,7 +14,7 @@ extend({ ThreeGlobe });
 // Type-safe module augmentation for <threeGlobe />
 declare module "@react-three/fiber" {
   interface ThreeElements {
-    threeGlobe: ThreeElement<typeof ThreeGlobe>;
+    threeGlobe: Object3DNode<ThreeGlobe, typeof ThreeGlobe>;
   }
 }
 
