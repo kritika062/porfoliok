@@ -1,16 +1,16 @@
-"use client";
+﻿'use client';
 import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
-
-// Also install this npm i --save-dev @types/react-lottie
-import Lottie from "react-lottie";
 
 import { cn } from "@/utils/cn";
 
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
-import animationData from "@/data/confetti.json";
 import MagicButton from "./MagicButton";
+import LottieAnimationClient from "./LottieAnimationClient";
+
+
+
 
 export const BentoGrid = ({
   className,
@@ -57,18 +57,13 @@ export const BentoGridItem = ({
 
   const [copied, setCopied] = useState(false);
 
-  const defaultOptions = {
-    loop: copied,
-    autoplay: copied,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  // defaultOptions is no longer needed since we moved to LottieAnimation component
 
   const handleCopy = () => {
     const text = "kritikarg20@gmail.com";
-    navigator.clipboard.writeText(text);
+    if (typeof window !== "undefined") {
+      navigator.clipboard.writeText(text);
+    }
     setCopied(true);
   };
 
@@ -182,7 +177,7 @@ export const BentoGridItem = ({
                 }`}
               >
                 {/* <img src="/confetti.gif" alt="confetti" /> */}
-                <Lottie options={defaultOptions} height={200} width={400} />
+                <LottieAnimationClient />
               </div>
 
               <MagicButton
@@ -199,3 +194,14 @@ export const BentoGridItem = ({
     </div>
   );
 };
+
+
+
+
+
+
+
+
+
+
+

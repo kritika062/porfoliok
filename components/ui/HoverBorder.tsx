@@ -1,5 +1,5 @@
-"use client";
-import React, { useState, useEffect, useRef } from "react";
+﻿"use client";
+import React, { useState, useEffect } from "react";
 
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
@@ -21,7 +21,7 @@ export function HoverBorderGradient({
     className?: string;
     duration?: number;
     clockwise?: boolean;
-  } & React.HTMLAttributes<HTMLElement>
+  } & React.ComponentPropsWithRef<any>
 >) {
   const [hovered, setHovered] = useState<boolean>(false);
   const [direction, setDirection] = useState<Direction>("TOP");
@@ -54,46 +54,37 @@ export function HoverBorderGradient({
       }, duration * 1000);
       return () => clearInterval(interval);
     }
-  }, [hovered]);
+  }, [hovered, duration, clockwise]);
+
+  const overlayStyle: React.CSSProperties = {
+    backgroundImage: hovered ? highlight : movingMap[direction],
+    transition: `background-image ${duration}s linear, opacity ${Math.max(0.1, duration / 2)}s ease`,
+  };
+
   return (
-    <Tag
-      onMouseEnter={(event: React.MouseEvent<HTMLDivElement>) => {
-        setHovered(true);
-      }}
-      onMouseLeave={() => setHovered(false)}
-      className={cn(
-        "relative flex rounded-full border  content-center bg-black/20 hover:bg-black/10 transition duration-500 dark:bg-white/20 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px decoration-clone w-fit",
-        containerClassName
-      )}
-      {...props}
-    >
-      <div
-        className={cn(
-          "w-auto text-white z-10 bg-black px-4 py-2 rounded-[inherit]",
-          className
-        )}
+    <div className={cn("relative", containerClassName)}>
+      <Tag
+        {...props}
+        className={cn("relative z-10", className)}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
         {children}
-      </div>
+      </Tag>
+
       <motion.div
-        className={cn(
-          "flex-none inset-0 overflow-hidden absolute z-0 rounded-[inherit]"
-        )}
-        style={{
-          filter: "blur(2px)",
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-        }}
-        initial={{ background: movingMap[direction] }}
-        animate={{
-          background: hovered
-            ? [movingMap[direction], highlight]
-            : movingMap[direction],
-        }}
-        transition={{ ease: "linear", duration: duration ?? 1 }}
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0"
+        style={overlayStyle}
+        animate={{ opacity: hovered ? 1 : 0.6 }}
+        transition={{ duration }}
       />
-      <div className="bg-black absolute z-1 flex-none inset-[2px] rounded-[100px]" />
-    </Tag>
+    </div>
   );
 }
+
+
+
+
+
+
